@@ -1,8 +1,12 @@
+const Cube = require('../models/Cube');
+
 const cubes = [];
 
-exports.getAll = (search, from, to) => {
+exports.getAll = async (search, from, to) => {
 
-       let result = cubes.slice();
+
+
+       let result = await Cube.find().lean();
 
        if(search){
             result = result.filter(cube => cube.name.toLocaleLowerCase().includes(search.toLocaleLowerCase()));
@@ -17,16 +21,12 @@ exports.getAll = (search, from, to) => {
   }
        return result;
 };
-exports.getOne = (cubeId) => cubes.find(x => x.id == cubeId);
+exports.getOne = (cubeId) => Cube.findById(cubeId).lean();
     
-exports.create = (cubeData) => {
-            const newCube = {
-                id: cubes.length + 1,
-                ...cubeData,
-
-            };
-          
-            cubes.push(newCube);
-
-            return newCube;
+exports.create = async (cubeData) => {
+             
+        const cube = new Cube(cubeData);
+        await cube.save();
+     
+        return cube;
 };
