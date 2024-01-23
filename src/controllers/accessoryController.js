@@ -1,10 +1,15 @@
-const  route  = require('./homeController');
+
 
 const router = require('express').Router();
 
 
-route.get('/create', (req, res) => {
+router.get('/create', (req, res) => {
         res.render('accessory/create');
 });
 
-module.exports = route;
+router.post('/create', (req, res) => {
+        const body = req.body;
+        res.redirect('/');
+});
+
+module.exports = router;
