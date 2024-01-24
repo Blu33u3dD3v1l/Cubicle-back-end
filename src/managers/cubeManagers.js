@@ -4,8 +4,6 @@ const cubes = [];
 
 exports.getAll = async (search, from, to) => {
 
-
-
        let result = await Cube.find().lean();
 
        if(search){
@@ -29,4 +27,11 @@ exports.create = async (cubeData) => {
         await cube.save();
      
         return cube;
+};
+
+exports.attachAccessory = async (cubeId, accessoryId) => {
+      const cube = await Cube.findById(cubeId);
+      cube.accessories.push(accessoryId);
+
+      return cube.save();
 };
