@@ -50,9 +50,9 @@ router.post('/:cubeId/attach-accessory',  async (req, res) => {
 
 });
 
-router.get('/:cubeId/delete', (req, res) => {
-  
-   res.render('cube/delete');
+router.get('/:cubeId/delete', async (req, res) => {
+   const cube = await cubeManager.getOne(req.params.cubeId).lean();
+   res.render('cube/delete', { cube });
 });
 
 router.get('/:cubeId/edit', (req, res) => {
