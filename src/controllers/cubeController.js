@@ -50,6 +50,15 @@ router.post('/:cubeId/attach-accessory',  async (req, res) => {
 
 });
 
+router.get('/:cubeId/delete', (req, res) => {
+  
+   res.render('cube/delete');
+});
+
+router.get('/:cubeId/edit', (req, res) => {
+  
+   res.render('cube/edit');
+});
 
 
 module.exports = router;

@@ -14,6 +14,8 @@ router.post('/login', async (req, res) => {
 
    console.log(user);
 
+   res.cookie('username', user.username);
+
    res.redirect('/');
 });
 
@@ -33,6 +35,9 @@ router.post('/register', async (req, res) => {
       res.redirect('/users/login');
 });
 
+router.get('/edit', (req, res) => {
+    res.render('/users/edit');
+});
 
 
 module.exports = router;
