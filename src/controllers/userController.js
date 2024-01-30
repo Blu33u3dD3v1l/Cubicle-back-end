@@ -6,6 +6,19 @@ router.get('/login', (req, res) => {
     res.render('users/login');
 });
 
+
+router.post('/login', async (req, res) => {
+    const {username, password} = req.body;
+
+   const user = await userManager.login(username, password);
+
+   console.log(user);
+
+   res.redirect('/');
+});
+
+
+
 router.get('/register', (req, res) => {
     res.render('users/register');
 });
