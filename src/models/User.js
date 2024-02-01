@@ -1,11 +1,25 @@
 const mongoose = require('mongoose');
-
 const bcrypt = require('bcrypt');
+const jwt = require('../lib/jwt');
+
+
 
 const userScheme = new mongoose.Schema({
-         username: String,
+         username: {
+           type: String,
+           require: true,
+           minLength: 5,
+           match: /^[A-Za-z0-9]+$/,
+           unique: true,
+
+         },
+
          password: {
             type: String,
+            require: true,
+            minLength: 8,
+            match: /^[A-Za-z0-9]+$/,
+
          },
                
 });
